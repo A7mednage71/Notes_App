@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:notes_app/widgets/ListBuilder.dart';
 import 'package:notes_app/widgets/customRow.dart';
@@ -14,7 +15,10 @@ class NotesBody extends StatelessWidget {
         SizedBox(
           height: 35,
         ),
-        Custom_Row(),
+        Custom_Row(
+          text: 'Notes',
+          icon: Icon(Icons.search),
+        ),
         Expanded(
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: 16),
