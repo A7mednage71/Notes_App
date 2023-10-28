@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:notes_app/Cubits/Add_note_cubit.dart';
-import 'package:notes_app/Cubits/Add_note_state.dart';
+import 'package:notes_app/Cubits/Add_note_cubit/Add_note_cubit.dart';
+import 'package:notes_app/Cubits/Add_note_cubit/Add_note_state.dart';
 import 'package:notes_app/models/Note_Model.dart';
 import 'package:notes_app/widgets/Custom_Material_Buttom.dart';
 import 'package:notes_app/widgets/Custom_TextField.dart';
