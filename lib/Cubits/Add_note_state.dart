@@ -1,5 +1,5 @@
 
-abstract class AddNoteState {}
+ class AddNoteState {}
 
 class AddNoteInitial extends AddNoteState {}
 
