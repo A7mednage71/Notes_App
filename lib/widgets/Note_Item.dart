@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_app/Cubits/note_Cubit/note_cubit.dart';
+import 'package:notes_app/models/Note_Model.dart';
 
 class note_item extends StatelessWidget {
-  const note_item({super.key});
-
+  const note_item({super.key, required this.model});
+  final Note_Model model;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,35 +22,38 @@ class note_item extends StatelessWidget {
               top: 24,
               bottom: 24,
             ),
-            title: const Padding(
-              padding: EdgeInsets.only(bottom: 20),
+            title: Padding(
+              padding: const EdgeInsets.only(bottom: 20),
               child: Text(
-                'Flutter tips',
-                style: TextStyle(
+                model.title,
+                style: const TextStyle(
                   color: Colors.black,
                   fontSize: 28,
                 ),
               ),
             ),
             subtitle: Text(
-              'Build Your career with Ben Nageh',
+              model.subtitle,
               style:
                   TextStyle(color: Colors.black.withOpacity(0.5), fontSize: 18),
             ),
             trailing: IconButton(
-              padding: EdgeInsets.only(right: 22),
+              padding: const EdgeInsets.only(right: 22),
               icon: const Icon(
                 Icons.delete,
                 color: Colors.black,
                 size: 35,
               ),
-              onPressed: () {},
+              onPressed: () {
+                model.delete();
+                BlocProvider.of<NoteCubit>(context).getAllNotes();
+              },
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(right: 22, bottom: 24),
             child: Text(
-              'oct 23 2023',
+              model.date,
               style:
                   TextStyle(color: Colors.black.withOpacity(0.5), fontSize: 16),
             ),

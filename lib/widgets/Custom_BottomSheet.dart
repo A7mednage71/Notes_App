@@ -1,6 +1,7 @@
+import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+
 import 'package:notes_app/Cubits/Add_note_cubit/Add_note_cubit.dart';
 import 'package:notes_app/Cubits/Add_note_cubit/Add_note_state.dart';
 import 'package:notes_app/models/Note_Model.dart';
@@ -82,10 +83,13 @@ class _BottomSheetwidgetState extends State<BottomSheetwidget> {
                               if (formkey.currentState!.validate()) {
                                 formkey.currentState!.save();
 
+                                var currentDate = formatDate(
+                                    DateTime.now(), [yyyy, '-', mm, '-', dd]);
+
                                 var note = Note_Model(
                                   title: title!,
                                   subtitle: subtitle!,
-                                  date: DateTime.now().toString(),
+                                  date: currentDate.toString(),
                                   color: Colors.blue.value,
                                 );
 
