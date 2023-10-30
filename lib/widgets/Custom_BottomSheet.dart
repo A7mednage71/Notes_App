@@ -99,7 +99,7 @@ class _BottomSheetwidgetState extends State<BottomSheetwidget> {
                                   date: currentDate.toString(),
                                   color: Colors.blue.value,
                                 );
-
+                                
                                 BlocProvider.of<AddNotecubit>(context)
                                     .addnote(note);
                               } else {

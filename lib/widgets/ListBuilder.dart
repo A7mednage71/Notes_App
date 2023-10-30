@@ -34,6 +34,7 @@ class Listviewbuildernotes extends StatelessWidget {
                       },
                     ),
                   );
+                  
                 },
                 child: note_item(
                   model: notes[index],

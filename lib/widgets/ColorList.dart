@@ -1,4 +1,8 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_app/Cubits/Add_note_cubit/Add_note_cubit.dart';
 
 class ColorListview extends StatefulWidget {
   ColorListview({super.key});
@@ -11,7 +15,7 @@ class _ColorListviewState extends State<ColorListview> {
   int indexactiveSircle = 0;
 
   List<Color> colors = const [
-    Color(0xff95190C),
+    Color(0xffFFCD7A),
     Color(0xff044B7F),
     Color(0xff107E7D),
     Color(0xffFACB0F),
@@ -36,6 +40,7 @@ class _ColorListviewState extends State<ColorListview> {
             child: InkWell(
               onTap: () {
                 indexactiveSircle = index;
+                BlocProvider.of<AddNotecubit>(context).color = colors[index];
                 setState(() {});
               },
               child: coloritem(
