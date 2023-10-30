@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -6,16 +8,18 @@ class Custom_Textfield extends StatelessWidget {
     super.key,
     required this.text,
     required this.lines,
-    this.onSaved,
+    this.onSaved, this.onChanged,
   });
 
   final String text;
   final int lines;
   final void Function(String?)? onSaved;
+  final  Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onChanged: onChanged,
       onSaved: onSaved,
       validator: (value) {
         if (value?.isEmpty ?? true) {

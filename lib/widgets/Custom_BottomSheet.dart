@@ -4,7 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:notes_app/Cubits/Add_note_cubit/Add_note_cubit.dart';
 import 'package:notes_app/Cubits/Add_note_cubit/Add_note_state.dart';
+import 'package:notes_app/Cubits/note_Cubit/note_cubit.dart';
 import 'package:notes_app/models/Note_Model.dart';
+import 'package:notes_app/widgets/ColorList.dart';
 import 'package:notes_app/widgets/Custom_Material_Buttom.dart';
 import 'package:notes_app/widgets/Custom_TextField.dart';
 
@@ -31,10 +33,11 @@ class _BottomSheetwidgetState extends State<BottomSheetwidget> {
       create: (context) => AddNotecubit(),
       child: BlocConsumer<AddNotecubit, AddNoteState>(
         listener: (context, state) {
-          if (state is AddNoteFailure) {
-            print('Failed to add ${state.message}');
-          }
+          // if (state is AddNoteFailure) {
+          //   print('Failed to add ${state.message}');
+          // }
           if (state is AddNoteSuccess) {
+            BlocProvider.of<NoteCubit>(context).getAllNotes();
             Navigator.pop(context);
           }
         },
@@ -73,7 +76,11 @@ class _BottomSheetwidgetState extends State<BottomSheetwidget> {
                         lines: 5,
                       ),
                       const SizedBox(
-                        height: 50,
+                        height: 20,
+                      ),
+                      ColorListview(),
+                      const SizedBox(
+                        height: 20,
                       ),
                       BlocBuilder<AddNotecubit, AddNoteState>(
                         builder: (context, state) {

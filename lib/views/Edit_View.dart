@@ -1,33 +1,65 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_app/Cubits/note_Cubit/note_cubit.dart';
+import 'package:notes_app/models/Note_Model.dart';
 import 'package:notes_app/widgets/Custom_TextField.dart';
+import 'package:notes_app/widgets/Note_Item.dart';
 
 import '../widgets/customRow.dart';
 
-class Edit_view extends StatelessWidget {
-  const Edit_view({super.key});
+class Edit_view extends StatefulWidget {
+  const Edit_view({super.key, required this.model});
+
+  final Note_Model model;
 
   @override
+  State<Edit_view> createState() => _Edit_viewState();
+}
+
+class _Edit_viewState extends State<Edit_view> {
+  String? title;
+  String? subtitle;
+  @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 35,
             ),
             Custom_Row(
               text: 'Edit Note',
-              icon: Icon(Icons.check),
+              icon: const Icon(Icons.check),
+              onpress: () {
+                widget.model.title = title ?? widget.model.title;
+                widget.model.subtitle = subtitle ?? widget.model.subtitle;
+                widget.model.save();
+                BlocProvider.of<NoteCubit>(context).getAllNotes();
+                Navigator.of(context).pop();
+              },
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
-            Custom_Textfield(text: 'Title', lines: 1),
-            SizedBox(
+            Custom_Textfield(
+              onChanged: (date) {
+                title = date;
+              },
+              text: widget.model.title,
+              lines: 1,
+            ),
+            const SizedBox(
               height: 16,
             ),
-            Custom_Textfield(text: 'Title', lines: 5),
+            Custom_Textfield(
+              onChanged: (data) {
+                subtitle = data;
+              },
+              text: widget.model.subtitle,
+              lines: 5,
+            ),
           ],
         ),
       ),

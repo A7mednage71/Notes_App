@@ -28,7 +28,9 @@ class Listviewbuildernotes extends StatelessWidget {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) {
-                        return Edit_view();
+                        return Edit_view(
+                          model: notes[index],
+                        );
                       },
                     ),
                   );
