@@ -62,6 +62,9 @@ class _Edit_viewState extends State<Edit_view> {
               text: widget.model.subtitle,
               lines: 5,
             ),
+            const SizedBox(
+              height: 16,
+            ),
             EditNoteScrolColors(
               note: widget.model,
             )
